@@ -76,6 +76,7 @@ input, select, textarea {
 
 	html {
 		box-sizing: border-box;
+		scroll-behavior: smooth;
 	}
 
 	*, *:before, *:after {
@@ -1976,14 +1977,6 @@ input, select, textarea {
 						background: #ea3723;
 					}
 
-					ul.social li a.fa-itch {
-						background: #da2713;
-					}
-	
-						ul.social li a.fa-itch:hover {
-							background: #ea3723;
-						}
-
 /* Icons */
 
 	.icon {
@@ -2487,6 +2480,7 @@ input, select, textarea {
 			html, body {
 				overflow-x: hidden;
 			}
+
 
 		/* Box */
 
