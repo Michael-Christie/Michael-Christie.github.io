@@ -2069,7 +2069,7 @@ input, select, textarea {
 	#header {
 		position: relative;
 		/*background color*/
-		background: #f5e9d7;
+		background: #f5debc;
 		border-bottom: solid 1px #ccc;
 		padding: 3em 0 2em 0;
 		text-align: center;
@@ -2271,7 +2271,7 @@ input, select, textarea {
 	#main {
 		position: relative;
 		/*background color*/
-		background: #f5e9d7 url("images/bg02.png");
+		background: #f5debc url("images/bg02.png");
 		padding: 2.5em 0 4em 0;
 	}
 
@@ -2288,7 +2288,7 @@ input, select, textarea {
 		}
 
 		#main .major h2 {
-			background: #f5e9d7 url("images/bg02.png");
+			background: #f5debc url("images/bg02.png");
 		}
 
 /* Footer */
