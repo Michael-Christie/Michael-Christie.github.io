@@ -81,13 +81,6 @@
 					</p>
 					<iframe width="100%" height=600px src="https://www.youtube.com/embed/IlOWKgJJ2q4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 					</iframe>
-					<!-- <p>
-						Praesent a dolor leo. Duis in felis in tortor lobortis volutpat et pretium tellus. Vestibulum ac ante nisl,
-						a elementum odio. Duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis.
-						placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-						eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-						elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor.
-					</p> -->
 					<section>
 						<header>
 							<h3>The Village Generator</h3>
@@ -130,11 +123,19 @@
 							<h3>Quest Generator</h3>
 						</header>
 						<p>
-							Nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-							eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-							elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor
-							sit amet nullam consequat feugiat dolore tempus. Elementum odio duis semper risus et lectus commodo fringilla.
-							Maecenas sagittis convallis justo vel mattis.
+							The Quest Generator uses "Motvies" which define the purpose or reasoning for the quest in the game world. These Motives can be like defend the village,
+							collect x item for person y or talking to several villagers. For this project I focused more around Motives that would result in an action game moment for
+							the player to play through however is open enough to add other Motives for other quest types. The quest is set up as a node tree which is then used to
+							spatial set up the quest in the game envioment. This creates "Islands and Bridges", where each Island is an important part of the quest, such as where you
+							fight monsters, and a Bridge is the area inbetween which connects two quest parts together. This means that when generating the quest first, I can use the
+							node tree to generate districts and areas for the quest to play out in, and when generating the envioment first, I can use the roads as a way to navigate to
+							new areas where quest actions can be played out in.
+						</p>
+						<p>
+							The current implementation of this quest system lacks on generating a context to fit the quest in. The quest is a list of actions for
+							the player to complete in its current state, which is then displayer to the player such as steal this item for player x, or kill these enemies,
+							however implementing a sentence generator, or even a phrase picker which would be weighted against the current game state and the action, could
+							help bring a better context for the quest in the game world.
 						</p>
 					</section>
 					<section>
