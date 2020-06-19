@@ -123,14 +123,15 @@
 							<h3>Quest Generator</h3>
 						</header>
 						<p>
-							The Quest Generator uses "Motvies" which define the purpose or reasoning for the quest in the game world. These Motives can be like defend the village,
-							collect x item for person y or talking to several villagers. For this project I focused more around Motives that would result in an action game moment for
+							The Quest Generator uses "Motives" which define the purpose or reasoning for the quest in the game world. These Motives can be, for example, defend the village,
+							collect x item for person y or talking to several villagers. For this project I focused more around Motives that would result in an action moment for
 							the player to play through however is open enough to add other Motives for other quest types. The quest is set up as a node tree which is then used to
 							spatial set up the quest in the game envioment. This creates "Islands and Bridges", where each Island is an important part of the quest, such as where you
 							fight monsters, and a Bridge is the area inbetween which connects two quest parts together. This means that when generating the quest first, I can use the
 							node tree to generate districts and areas for the quest to play out in, and when generating the envioment first, I can use the roads as a way to navigate to
 							new areas where quest actions can be played out in.
 						</p>
+						<p>Images goes here to do with quests</p>
 						<p>
 							The current implementation of this quest system lacks on generating a context to fit the quest in. The quest is a list of actions for
 							the player to complete in its current state, which is then displayer to the player such as steal this item for player x, or kill these enemies,
@@ -142,13 +143,32 @@
 						<header>
 							<h3>Reflection</h3>
 						</header>
-						<p>Overall this project has be really fun, blah blah blah, look to the future.</p>
 						<p>
-							There are several improvements that I would do to this project. Mostly the project works well however near the
-							end it got more difficult to add smaller details to the envioment, like papers on the floor, or bumps in the envioment
-							to make it feel less flat. Generating the envioment first before the city, and then letting the city flatten and adapt to
-							the shape of the terrain would feel better and actually like the city was intergrated into the envioment.
-							Districts should be merged together more, and not defined by the city block in which they lay in.
+							Overall I'm really happy with the project as a whole, but the city generator was by far the most fun part to have been working on. Its not perfect
+							and lacks detail to really bring the whole city to life, like objects specific to certian houses to make them more unique. However, with a lack of
+							assets to really use, I'm proud of what I made. This was my first fully PCG game, I had experiemented and played around with some PCG features like
+							track generation, and generating houses, but never to the extent where I was creating a game which required generated content. There's a lot I've
+							learnt from this experiance, as well as things I know I need to do to improve the current solution.
+							This was also the first project that I had really undertaken that required me to spend more than 3 months programming, and so planning was really
+							important to help complete the project before the due date. I was setting myself weekly and daily goals to hit, which worked amazingly well to keep
+							motivated and pushing forward with the project.
+						</p>
+
+						<p>
+							There are some issues with the performance of the city generator that I would like to fix during another itteration of the project, which revolve
+							around the scalability of the city. In the current implementation, expanding the city to be any larger than it currently is would cause the game to
+							crash. A protential fix to this is to actually chunk the city, in its current form everything is created and stored in a city manager, but offloading
+							some of the data and functionality in a more chunk oriented approach might help the performance and scalability of the generator, with having chunks
+							only needing to interact with its surrounding chunks rather then the whole city like it is currently doing.
+							Another problem that I'd address, which was stated in the Quest Generator section revolves around the quest narrative. It would of been nice to be able
+							to spend more time on this, implementing a sentence or phrase picker just to polish up the quests, making it less direct and more narrative driven which
+							I think would improve the player experiance.
+						</p>
+						<p>
+							With all the new improvements that could be added, I feel like the direction of this project if it was to be remade would be more in the direction of
+							generating a city based upon real life data for road layouts, then procedurally generating entire buildings in the empty space, similiar to what was done
+							for the Marvel: Spiderman PS4 game. The quest system would become a real time event system, picking motives for NPC's to use to create an event for the player
+							to interact with, but would be similar in terms of functionality of defining goals for the player to complete and assigning them into a game world.
 						</p>
 						<ul class="actions">
 							<li><a href="https://michaelchristie.itch.io/procedural-pursuit" target="_blank" class="button">Play the game</a></li>
