@@ -82,22 +82,45 @@
 							<h3>Track Building</h3>
 						</header>
 						<p>
-							Talk here about the track building part of the project.
+							One of the first things I remember learning about when looking into PCG was about generating meshes around a spline from a Unite 2015 talk by Freya Holmer. Since that point I must of recreated
+							generating a road 4 or 5 times, improving the scalability, implementing flexible road width and curb widths, but I had yet to make a game that made use of generating a road yet. So I decided to
+							create a game with the purpose of letting the player create their own racetrack and being able to play on it.
 						</p>
 						<img width="90%" src="images/RaceShare/First track generation.gif" />
+						<p>
+							This track generator uses Nodes to generate the track off of. Each Node has a location, which is snapped onto a grid, with a forward and backwards position too. Each segment of the track creates a Bezier
+							curve between 2 Nodes, to create a smooth curve with. I make use of a node manager to store the current Nodes in play, as well as to handle the logic for deleting, moving or changing the Node generation order,
+							then pass the updated nodes into the mesh generator, which updates the segment of the track that corrosponds to those Nodes for efficiency rather than updating the whole track.
+						</p>
 						<img width="90%" src="images/RaceShare/MovingNodes.gif" />
+						<p>
+							There are also a couple things that are done for the player to help make the whole process of creating a track feel easy and smooth. The first is a relativily simple thing, where the nodes snap to a grid.
+							The scale of the grid can be changed, ranging from 1 unit spacing, 2 units and 4 units, which lines up with the grid texture that the player sees in the track editor.
+							Nodes rotations are also calculated when creating new Nodes, using the angle to the new Node from the previous node to give a rough idea as to where the angle should be for the user. In terms of accuracy,
+							in most cases the desired angle is within 30 degrees of the calculated angle from when I was creating tracks for the game.
+							The final thing that helps players create a track is constraining where a Node can be place. Nodes can be placed anywhere in front of the previous Node, anything behind this causes the mesh to overlap with itself,
+							and so contrainting where a Node can be placed helps generate tracks that look right and don't clip into each other.
+						</p>
 						<img width="90%" src="images/RaceShare/TrackCreating.gif" />
+						<p>
+							Talk about the limitations about the current track editor : Can't support multiple node connections
+						</p>
 					</section>
 					<section>
 						<header>
 							<h3>Racing</h3>
 						</header>
 						<p>
-							Talk here about the racing part of the game
+							Now it wouldn't be much of a game without being able to actually drive around the track. Player controllers are something that I've not had much experiance with creating yet, and
+							so the controller used for this game may have some flaws because of that. I remember seeing a tweet from @KenneyNL which showed a behind the scenes look at a car controller he had made, using a sphere that
+							rotated which created the movement, and than a mesh that updated to the position of that sphere. The movement that was created feels good and responsive to the player, but by itself it just felt like it
+							lacked something.
 						</p>
 						<img width="90%" src="images/RaceShare/KartKartKart.gif" />
+						<p>
+							Juiciness : Camera POV change, Drifting Particals, Movement on the meshes
+						</p>
 						<img width="90%" src="images/RaceShare/SpeedBoostttt.gif" />
-						<img width="90%" src="images/RaceShare/TrackDrivingItch.gif" />
 					</section>
 					<section>
 						<header>
@@ -107,8 +130,7 @@
 							UI looks pretty, sound and music eh.
 						</p>
 						<ul class="actions">
-							<li><a href="https://michaelchristie.itch.io/procedural-pursuit" target="_blank" class="button">Play Procedural Pursuit</a></li>
-							<li><a href="#" class="button">Read my paper</a></li>
+							<li><a href="https://michaelchristie.itch.io/projecttriangle" target="_blank" class="button">Play Race & Share</a></li>
 						</ul>
 					</section>
 				</article>
