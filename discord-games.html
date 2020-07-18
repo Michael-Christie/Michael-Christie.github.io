@@ -62,34 +62,48 @@
 
 				<!-- Content -->
 				<article class="box post">
-					<a href="#" class="image featured"><img src="images/DissCover.png" alt="" /></a>
 					<header>
 						<h2>Discord Games</h2>
-						<!--<button>Click me to read the paper</button>-->
 					</header>
-					<!-- <ul class="actions">
-						<li><a href="https://michaelchristie.itch.io/procedural-pursuit" target="_blank" class="button">Play Procedural Pursuit</a></li>
-						<li><a href="#" class="button">Read my paper</a></li>
-					</ul> -->
 					<p>
 						When becoming the VP for the Game Dev Society, I ended up taking over the bot we had on the server. To learn how to work on this, I decided
 						to try make a game that ran inside Discord.
 					</p>
-					<iframe width="100%" height=600px src="https://www.youtube.com/embed/s1PolwKRGus" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-					</iframe>
 					<section>
 						<header>
 							<h3>Tic Tac Toe</h3>
 						</header>
 						<p>
-							Ah yes Tic Tac Toe
+							Creating Tic Tac Toe to be played inside of Discord was a response to me creating chess to be played in Discord. I didn't like the fact that all
+							I was really using Discord for was a way to send a message to update the chess board, rather then feeling like I was using Discord as the way to
+							play the game. Discord allows messages to be reacted to, which I thought could be an interesting way to navigate through a game, and so knowing that
+							there is a limited number of reactions that can be, I needed to use a game that only needed a few actions to be played, hence why I choose Tic Tac Toe
+							as I only needed to show at max 9 different tiles that could be taken by the player.
 						</p>
-
+						<img src="images/Discord/DiscordTicTac.gif" />
 						<p>
-						<ul class="actions">
-							<li><a href="https://michaelchristie.itch.io/procedural-pursuit" target="_blank" class="button">Play Procedural Pursuit</a></li>
-							<li><a href="#" class="button">Read my paper</a></li>
+							I started by breaking down the way in which I would need to get the game to work:
+						<ul>
+							<li>A way to start the game off</li>
+							<li>Create a new room for the game to be hosted in (with permissions)</li>
+							<li>A way to find out what reaction has be selected</li>
+							<li>A way to update the board</li>
+							<li>Checking for winning / losing conditions</li>
 						</ul>
+						After figuring out the way in which the system would work, I started off working on the way in which the player would start the game off, creating a
+						catergory to hold the active rooms in, and creating a new text room as a child of this category to, and setting up the permissions to stop the player
+						from being able to send messages in the chat.<br />
+						Next I needed to work on a way to detect when a reaction was added. When I first created this, there was no specific reaction added Event that was
+						called, I so I had to use the raw packets that we're sent and to check through them all to find a reaction packet, however the Discord API recently got updated
+						to include a reaction added event which makes finding when a reaction is added and the channel that reaction was added into alot easier. By finding out the
+						channel that the reaction was added in, I can compare that channel to all active game channels and find the corrosponding game room and pass the reaction to it,
+						which that translates the emoji code into a board possition.
+						</p>
+						<img src="images/Discord/TicTacNew.gif" />
+						<p>
+							Overall I really like the flow that is created by intergrating playing a game through the reactions that Discord allows us to do, and nothing about the way
+							in which you play the game feels off. There is obviously limitations to what types of games could be played through because of the amount of reactions that can
+							be placed on a message, however you could easily create a small room based game, with a couple simple interactions like moving around and an interact button.
 						</p>
 					</section>
 				</article>
@@ -101,88 +115,6 @@
 		<section id="footer">
 			<div class="container">
 				<div class="row">
-					<!-- <div class="col-8 col-12-medium">
-						<section>
-							<header>
-								<h2>Blandit nisl adipiscing</h2>
-							</header>
-							<ul class="dates">
-								<li>
-									<span class="date">Jan <strong>27</strong></span>
-									<h3><a href="#">Lorem dolor sit amet veroeros</a></h3>
-									<p>Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem consequat etiam.</p>
-								</li>
-								<li>
-									<span class="date">Jan <strong>23</strong></span>
-									<h3><a href="#">Ipsum sed blandit nisl consequat</a></h3>
-									<p>Blandit phasellus lorem ipsum dolor tempor sapien tortor hendrerit adipiscing feugiat lorem.</p>
-								</li>
-								<li>
-									<span class="date">Jan <strong>15</strong></span>
-									<h3><a href="#">Magna tempus lorem feugiat</a></h3>
-									<p>Dolore consequat sed phasellus lorem sed etiam nullam dolor etiam sed amet sit consequat.</p>
-								</li>
-								<li>
-									<span class="date">Jan <strong>12</strong></span>
-									<h3><a href="#">Dolore tempus ipsum feugiat nulla</a></h3>
-									<p>Feugiat lorem dolor sed nullam tempus lorem ipsum dolor sit amet nullam consequat.</p>
-								</li>
-								<li>
-									<span class="date">Jan <strong>10</strong></span>
-									<h3><a href="#">Blandit tempus aliquam?</a></h3>
-									<p>Feugiat sed tempus blandit tempus adipiscing nisl lorem ipsum dolor sit amet dolore.</p>
-								</li>
-							</ul>
-						</section>
-					</div>
-					<div class="col-4 col-12-medium">
-						<section>
-							<header>
-								<h2>What's this all about?</h2>
-							</header>
-							<a href="#" class="image featured"><img src="images/pic10.jpg" alt="" /></a>
-							<p>
-								This is <strong>Dopetrope</strong> a free, fully responsive HTML5 site template by
-								<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a> It's released for free under
-								the <a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for any personal or commercial project &ndash; just don't forget to credit us!
-							</p>
-							<footer>
-								<ul class="actions">
-									<li><a href="#" class="button">Find out more</a></li>
-								</ul>
-							</footer>
-						</section>
-					</div>
-					<div class="col-4 col-6-medium col-12-small">
-						<section>
-							<header>
-								<h2>Tempus consequat</h2>
-							</header>
-							<ul class="divided">
-								<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
-								<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
-								<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
-								<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
-								<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
-								<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
-							</ul>
-						</section>
-					</div>
-					<div class="col-4 col-6-medium col-12-small">
-						<section>
-							<header>
-								<h2>Ipsum et phasellus</h2>
-							</header>
-							<ul class="divided">
-								<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
-								<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
-								<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
-								<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
-								<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
-								<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
-							</ul>
-						</section>
-					</div> -->
 					<div class="col-4 col-12-medium">
 						<section>
 							<header>
@@ -197,22 +129,10 @@
 								<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/michaelchristiedev/" target="_blank"><span class="label">LinkedIn</span></a></li>
 							</ul>
 							<ul class="contact">
-								<!-- <li>
-										<h3>Address</h3>
-										<p>
-											Untitled Incorporated<br />
-											1234 Somewhere Road Suite<br />
-											Nashville, TN 00000-0000
-										</p>
-									</li> -->
 								<li>
 									<h3>Mail</h3>
 									<p><a href="mailto:michaelchristie.dev@gmail.com" target="_blank">michaelchristie.dev@gmail.com</a></p>
 								</li>
-								<!-- <li>
-									<h3>Phone</h3>
-									<p>(800) 000-0000</p>
-								</li> -->
 							</ul>
 						</section>
 					</div>
