@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<!--
+	Dopetrope by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Interior Room Generator</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="no-sidebar is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<section id="header">
+
+			<!-- Logo -->
+			<h1><a href="index.html">Michael Christie</a></h1>
+			<u>
+				<h5>michaelchristie.dev@gmail.com</h5>
+			</u>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li class="current">
+						<a href="index.html#Projects">Project's</a>
+					</li>
+					<li><a href="index.html#GameJams">Game Jams</a></li>
+					<li><a href="index.html#Education">Education & Activities</a></li>
+					<li><a href="no-sidebar.html">CV</a></li>
+				</ul>
+			</nav>
+		</section>
+
+		<!-- Main -->
+		<section id="main">
+			<div class="container">
+
+				<!-- Content -->
+				<article class="box post">
+					<header>
+						<h2>Interior Room Generator</h2>
+					</header>
+					<p>
+						An interior room generator, which detects where a room is and populates the content of the room! The purpose of this project was to look at a concept I had read about while
+						doing researching into my Dissertation, which spoke about using an Object Relationship Hierarchy to generate the contents of a room. I wanted to work on a solution that used this
+						approach to create a tool that could be used to help generate the interiors of rooms.
+					</p>
+					<section>
+						<header>
+							<h3>Room Detector</h3>
+						</header>
+
+						<p>
+							The first step for this project was to be able to detect the rooms that I was to eventually generate objects in. When starting this project I downloaded an asset pack for props
+							to use in this project. In this asset pack was a pre-created demo scene including a house, which I used as a example of what I wanted the final outcome of this project to be.
+							The specifications for this room detector meant that :
+						</p>
+						<ul>
+							<li>Detect where a wall is. <i>(A wall is defined at 90 degree intervals)</i></li>
+							<li>Detect where a door is.</li>
+							<li>Dectect where a window is.</li>
+						</ul>
+						<img src="images/IRG/FindingSpaceBreakDown.gif" />
+						<p>
+							Room Detection is done with initally casting rays till it hits walls in each direction. This creates a square area that a room is believed to be in. For non-squared rooms, this means there are
+							several overlapping square areas which need to be merged together. To check for overallping rooms, for accuracy an AABB method could of been used, however in my generator I decided to
+							just check the distance between the different square areas due to how close they are. These merged square areas creates a max area that the room is situated in and needs to be searched.
+						</p>
+						<p>
+							Once a max area is defined for where the room is, a more detailed check is done using raycasts. Each ray is cast at an interval in 4 directions, which can be defined by the user. Each rays length is equal to the
+							distance to the edge of the room from its current possition. If the interval hits 4 walls, then that interval is inside of the room. Each hit inside of the room can be marked with a enum depending upon its distance
+							to where the ray hit the wall, which would define the possition of that interval, either an edge, door, window or empty space. This map of locations inside of the room can then be passed onto the room generator to
+							spawn objects.
+						</p>
+
+					</section>
+
+					<section>
+						<header>
+							<h3>Content Generator</h3>
+						</header>
+						<img src="images/IRG/LivingRoom.gif" />
+						<p>
+							Room content is generated using a Object Relationship Hierarchy (ORH), which is like a node tree. An ORH describes the relationship between objects, so for example a chair would have a relationship
+							to a TV, and a table would have a relationship of being inbetween the chair and the TV. Using this, I would be able to describe where objects should spawn in relation to each other forming the content of the room.
+						</p>
+						<img src="images/IRG/SSS3.2.gif" />
+						<p>
+							With the ORH defining where objects should be placed, at each node layer, using the conditions describing where the object it should be placed, a list of possible spawning locations is formed. From this list
+							one location is picked, the space checked as to whether the object can spawn in the space. Also during this time, a flood fill algorithm is used to check that access to the whole room and other doorways are accessible.
+							For example, if a table was to be spawned at an edge, a list off all edge tiles is formed and one spot picked. If that table also had a condition for spawning next to an object, a list of edge tiles surrounding previous object
+							would form the possible spawn possition list. The conditions then all link together to form the way in which rooms are generated.
+
+						</p>
+						<img src="images/IRG/MasterBedroom.gif" />
+					</section>
+
+					<section>
+						<header>
+							<h3>Reflection</h3>
+						</header>
+
+						<p>
+							As I said before, this asset pack also came with a pre-created house which I could use to then compare my generation with a hand made content. So with that lets look at some of the rooms and compare them starting with the
+							living room. Below is an image of the pre-created living room, followed by an image of the procedurally generated living room
+						</p>
+						<h5>Pre-Created</h5>
+						<img src="images/IRG/preLR.PNG" />
+						<h5>Generated</h5>
+						<img src="images/IRG/ownLR.PNG" />
+						<p>
+							Both of these rooms look rather similar to each other, they both spawn with a main focus point with the TV in the center of the room, and a place to sit, and is also surrounded by objects like shelves. The only thing my generator
+							doesn't do is having chairs next to other chairs that will face towards the TV as well, which is due to the grid that the generator uses to spawn objects over. <br /> <br />
+							The next room to look at is the bedroom.
+						</p>
+						<h5>Pre-Created</h5>
+						<img src="images/IRG/preMB.PNG" />
+						<h5>Generated</h5>
+						<img src="images/IRG/ownMB.PNG" />
+						<p>
+							Again, like the living room, you can see a resemblance between the two bedrooms. The generated room looks like a bedroom with the items that you would see in a bedroom and objects spawning in a location which looks appropriate.
+						</p>
+						<p>
+							Overall, the room generator works well to generate the basic outline for a room. The content generated allows a user to define the structure of a room and allows for some complex conditions like spawning objects inline and inbetween,
+							however there is some limitations as to what it can do such as the fact that everything is grid oriented and so objects that don't stictly follow a grid e.g. objects thats are rotated by 45 degrees. With this in mind, working around the limitations
+							of this generator, can still create acurate rooms, that maybe just need a touch up afterwards by a designer to be used fully inside of a game.
+
+						</p>
+					</section>
+				</article>
+
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<section id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-4 col-12-medium">
+						<section>
+							<header>
+								<h2>Contact's</h2>
+							</header>
+							<ul class="social">
+								<!-- <li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li> -->
+								<li><a class="icon brands fa-twitter" href="https://twitter.com/MichaelChriste" target="_blank"><span class="label">Twitter</span></a></li>
+								<li><a class="icon brands fa-itch-io" href="https://michaelchristie.itch.io/" target="_blank"><span class="label">Itch.io</span></a></li>
+								<li><a class="icon brands fa-github" href="https://github.com/Michael-Christie/" target="_blank"><span class="label">Github</span></a></li>
+								<li><a class="icon style fa-envelope" href="mailto:michaelchristie.dev@gmail.com" target="_blank"><span class="label">Email</span></a></li>
+								<li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/michaelchristiedev/" target="_blank"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<ul class="contact">
+								<li>
+									<h3>Mail</h3>
+									<p><a href="mailto:michaelchristie.dev@gmail.com" target="_blank">michaelchristie.dev@gmail.com</a></p>
+								</li>
+							</ul>
+						</section>
+					</div>
+					<div class="col-12">
+
+						<!-- Copyright -->
+						<div id="copyright">
+							<ul class="links">
+								<li>&copy; Michael Christie. All rights reserved.</li>
+								<li>Design & Template: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
