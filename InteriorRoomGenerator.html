@@ -69,7 +69,7 @@
 							<li>Detect where a door is.</li>
 							<li>Dectect where a window is.</li>
 						</ul>
-						<img src="images/IRG/FindingSpaceBreakDown.gif" />
+						<img width="90%" src="images/IRG/FindingSpaceBreakDown.gif" />
 						<p>
 							Room Detection is done with initally casting rays till it hits walls in each direction. This creates a square area that a room is believed to be in. For non-squared rooms, this means there are
 							several overlapping square areas which need to be merged together. To check for overallping rooms, for accuracy an AABB method could of been used, however in my generator I decided to
@@ -88,12 +88,12 @@
 						<header>
 							<h3>Content Generator</h3>
 						</header>
-						<img src="images/IRG/LivingRoom.gif" />
+						<img width="90%" src="images/IRG/LivingRoom.gif" />
 						<p>
 							Room content is generated using a Object Relationship Hierarchy (ORH), which is like a node tree. An ORH describes the relationship between objects, so for example a chair would have a relationship
 							to a TV, and a table would have a relationship of being inbetween the chair and the TV. Using this, I would be able to describe where objects should spawn in relation to each other forming the content of the room.
 						</p>
-						<img src="images/IRG/SSS3.2.gif" />
+						<img width="90%" src="images/IRG/SSS3.2.gif" />
 						<p>
 							With the ORH defining where objects should be placed, at each node layer, using the conditions describing where the object it should be placed, a list of possible spawning locations is formed. From this list
 							one location is picked, the space checked as to whether the object can spawn in the space. Also during this time, a flood fill algorithm is used to check that access to the whole room and other doorways are accessible.
@@ -101,7 +101,7 @@
 							would form the possible spawn possition list. The conditions then all link together to form the way in which rooms are generated.
 
 						</p>
-						<img src="images/IRG/MasterBedroom.gif" />
+						<img width="90%" src="images/IRG/MasterBedroom.gif" />
 					</section>
 
 					<section>
@@ -114,18 +114,18 @@
 							living room. Below is an image of the pre-created living room, followed by an image of the procedurally generated living room
 						</p>
 						<h5>Pre-Created</h5>
-						<img src="images/IRG/preLR.PNG" />
+						<img width="90%" src="images/IRG/preLR.PNG" />
 						<h5>Generated</h5>
-						<img src="images/IRG/ownLR.PNG" />
+						<img width="90%" src="images/IRG/ownLR.PNG" />
 						<p>
 							Both of these rooms look rather similar to each other, they both spawn with a main focus point with the TV in the center of the room, and a place to sit, and is also surrounded by objects like shelves. The only thing my generator
 							doesn't do is having chairs next to other chairs that will face towards the TV as well, which is due to the grid that the generator uses to spawn objects over. <br /> <br />
 							The next room to look at is the bedroom.
 						</p>
 						<h5>Pre-Created</h5>
-						<img src="images/IRG/preMB.PNG" />
+						<img width="90%" src="images/IRG/preMB.PNG" />
 						<h5>Generated</h5>
-						<img src="images/IRG/ownMB.PNG" />
+						<img width="90%" src="images/IRG/ownMB.PNG" />
 						<p>
 							Again, like the living room, you can see a resemblance between the two bedrooms. The generated room looks like a bedroom with the items that you would see in a bedroom and objects spawning in a location which looks appropriate.
 						</p>
